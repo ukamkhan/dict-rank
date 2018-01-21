@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.Matchers.notNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
@@ -17,7 +18,9 @@ public class DictionaryServiceTest {
 
     FakeDictionaryRepository dictionaryRepository = mock(FakeDictionaryRepository.class);
 
-    DictionaryService dictionaryService = spy(new DictionaryService(dictionaryRepository));;
+    DictionaryService dictionaryService = spy(new DictionaryService(dictionaryRepository));
+
+    Language toAdd = spy(new Language(5, "French"));
 
     @BeforeClass
     public void init(){
@@ -41,16 +44,18 @@ public class DictionaryServiceTest {
 
     @Test
     public void addLanguage_doesNotExist_AddedSuccessFully(){
+        when(dictionaryRepository.save("French")).thenReturn(toAdd);
         when(dictionaryRepository.getLanguages()).thenReturn(Collections.singletonList(new Language(34,"Chinese")));
-        boolean result = dictionaryService.addLanguage("French");
-        Assert.assertTrue(result);
+
+        Language result = dictionaryService.addLanguage("French");
+        Assert.assertNotNull(result);
     }
 
     @Test
     public void addLanguage_alreadyExists_AddNotSuccessful(){
         when(dictionaryRepository.getLanguages()).thenReturn(Collections.singletonList(new Language(11,"Japanese")));
-        boolean result = dictionaryService.addLanguage("Japanese");
-        Assert.assertFalse(result);
+        Language result = dictionaryService.addLanguage("Japanese");
+        Assert.assertNull(result);
     }
 
     private List<Language> languagesWithUrdu(){

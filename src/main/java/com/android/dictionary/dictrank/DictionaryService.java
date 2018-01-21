@@ -19,15 +19,19 @@ public class DictionaryService {
         return dictionaryRepository.findDictionaryGreaterThanRating(rating);
     }
 
-    public boolean addLanguage(String languageName){
+    public Language addLanguage(String languageName){
         List<Language> languages = dictionaryRepository.getLanguages();
+        boolean exists = false;
         for(Language language: languages) {
-            if (!language.getName().contains(languageName)) {
-                dictionaryRepository.save(new Language(languageName));
-                return true;
+            if (language.getName().equalsIgnoreCase(languageName)) {
+                exists = true;
+                break;
             }
         }
-        return false;
+        if(!exists){
+            return dictionaryRepository.save(languageName);
+        }
+        return null;
     }
 
     public Language getUrduLanguage(){

@@ -57,9 +57,9 @@ public class FakeDictionaryRepository {
 
     private void initLanguages() {
         languages = new ArrayList<>();
-        languages.add(new Language(0, "Arabic"));
-        languages.add(new Language(1, "Urdu"));
-        languages.add(new Language(2, "Persian"));
+        languages.add(new Language(getNextLanguageId(), "Arabic"));
+        languages.add(new Language(getNextLanguageId(), "Urdu"));
+        languages.add(new Language(getNextLanguageId(), "Persian"));
     }
 
     public List<Dictionary> findDictionaryGreaterThanRating(double rating){
@@ -72,9 +72,10 @@ public class FakeDictionaryRepository {
         return result;
     }
 
-    public void save(Language language){
-        language.setId(getNextLanguageId());
-        languages.add(language);
+    public Language save(String language){
+        Language newLanguage = new Language(getNextLanguageId(), language);
+        languages.add(newLanguage);
+        return newLanguage;
     }
 
     public List<Language> getLanguages(){
