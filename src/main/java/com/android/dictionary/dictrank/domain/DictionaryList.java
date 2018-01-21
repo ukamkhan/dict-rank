@@ -1,4 +1,4 @@
-package com.android.dictionary.dictrank;
+package com.android.dictionary.dictrank.domain;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ public class DictionaryList {
 
     private List<Dictionary> dictionaries;
 
-    DictionaryList(List<Dictionary> dictionaries){
+    public DictionaryList(List<Dictionary> dictionaries){
         this.dictionaries = dictionaries;
     }
 

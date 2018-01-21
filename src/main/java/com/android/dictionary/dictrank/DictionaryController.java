@@ -1,7 +1,6 @@
 package com.android.dictionary.dictrank;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
+import com.android.dictionary.dictrank.domain.DictionaryList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +19,7 @@ public class DictionaryController {
 
     @RequestMapping(value = "/dictionaries", method = RequestMethod.GET)
     public DictionaryList getDictionariesAboveRating(@RequestParam(value="rating") String rating) {
-       return new DictionaryList(dictionaryService.findDictionaryByRating(new Double(rating).doubleValue()));
+       return new DictionaryList(dictionaryService.getDictionaryGreaterThanRating(new Double(rating).doubleValue()));
     }
 
 }

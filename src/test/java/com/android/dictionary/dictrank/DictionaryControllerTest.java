@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.MvcResult;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class DictionaryControllerTest {
+
     @Autowired
     private MockMvc mockMvc;
 

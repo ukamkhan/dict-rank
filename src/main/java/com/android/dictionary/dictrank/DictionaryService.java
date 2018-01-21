@@ -1,32 +1,47 @@
 package com.android.dictionary.dictrank;
 
+import com.android.dictionary.dictrank.domain.Dictionary;
+import com.android.dictionary.dictrank.domain.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DictionaryService {
 
-    private List<Dictionary> dictionaryList;
+    private FakeDictionaryRepository dictionaryRepository;
 
     @Autowired
-    public DictionaryService(){
-        dictionaryList = new ArrayList<Dictionary>();
-        dictionaryList.add(new Dictionary(1, "AlQamoos ul Jadeed Urdu Arabic", "applogy", 4.8,
-                            "free", "Arabic", "Urdu"));
-        dictionaryList.add(new Dictionary(2, "Arabic Urdu Dictionary", "Alif Innovative Solution",
-                            4.8, "free", "Arabic", "Urdu"));
-        dictionaryList.add(new Dictionary(2, "Arbi Seekhen – Arbi Urdu Bol Chal", "Injeer Apps",
-                4.4, "free", "Arabic", "Urdu"));
+    public DictionaryService(FakeDictionaryRepository dictionaryRepository){
+        this.dictionaryRepository = dictionaryRepository;
     }
 
-    public List<Dictionary> findDictionaryByRating(double rating){
-        List<Dictionary> result = new ArrayList<Dictionary>();
-        for( Dictionary dict : dictionaryList){
-            if(dict.getRating() > rating){
-                result.add(dict);
+    public List<Dictionary> getDictionaryGreaterThanRating(double rating) {
+        return dictionaryRepository.findDictionaryGreaterThanRating(rating);
+    }
+
+    public boolean addLanguage(String languageName){
+        List<Language> languages = dictionaryRepository.getLanguages();
+        for(Language language: languages) {
+            if (!language.getName().contains(languageName)) {
+                dictionaryRepository.save(new Language(languageName));
+                return true;
             }
         }
-        return result;
+        return false;
     }
+
+    public Language getUrduLanguage(){
+        List<Language> languages = dictionaryRepository.getLanguages();
+        for (Language language: languages){
+            if(language.getName().equals("Urdu")){
+                return language;
+            }
+        }
+        return null;
+    }
+
+    public List<Language> getAllLanguages(){
+        return dictionaryRepository.getLanguages();
+    }
+
 }
