@@ -75,6 +75,8 @@ public class FakeDictionaryRepository {
     public Language save(String language){
         Language newLanguage = new Language(getNextLanguageId(), language);
         languages.add(newLanguage);
+        dictionaryList.add( new Dictionary(getNextDictionaryId(), language + " Dictionary", "XYZ Innovative Solution",
+                4.9, "free", language, "Urdu" ));
         return newLanguage;
     }
 
