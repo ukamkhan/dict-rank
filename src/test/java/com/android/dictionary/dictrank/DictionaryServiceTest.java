@@ -28,14 +28,14 @@ public class DictionaryServiceTest {
     }
 
     @Test
-    public void getLanguages_NoUrdu_NullReturned(){
+    public void getUrduLanguage_NoUrdu_NullReturned(){
         when(dictionaryRepository.getLanguages()).thenReturn(Collections.singletonList(new Language(34,"Bahsa")));
         Language result = dictionaryService.getUrduLanguage();
         Assert.assertNull(result);
     }
 
     @Test
-    public void getLanguages_WithUrdu_UrduLanguageReturned(){
+    public void getUrduLanguage_WithUrdu_UrduLanguageReturned(){
         when(dictionaryRepository.getLanguages()).thenReturn(languagesWithUrdu());
         Language result = dictionaryService.getUrduLanguage();
         Assert.assertNotNull(result);
