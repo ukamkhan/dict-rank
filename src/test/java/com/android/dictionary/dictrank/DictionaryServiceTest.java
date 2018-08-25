@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.Matchers.notNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
@@ -18,7 +17,7 @@ public class DictionaryServiceTest {
 
     FakeDictionaryRepository dictionaryRepository = mock(FakeDictionaryRepository.class);
 
-    DictionaryService dictionaryService = spy(new DictionaryService(dictionaryRepository));
+    DictionaryService dictionaryService = new DictionaryService(dictionaryRepository);
 
     Language toAdd = spy(new Language(5, "French"));
 
