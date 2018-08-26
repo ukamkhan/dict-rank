@@ -1,0 +1,64 @@
+
+# defining my dictionaries to be used in mongo shell, will be writing using JPARepository and the like, later with in the app. 
+# wanted to try mongo shell hehe!
+
+db.dictionaries.insertMany(
+	[
+		{
+		  name: "AlQamoos ul Jadeed Urdu Arabic", 
+		  provider: "applogy", 
+		  rating: 4.8,
+		  price: "free", 
+		  fromLanguage: "Arabic", 
+		  toLanguage: "Urdu" 
+		}, 
+		{
+			name: "Arabic Urdu Dictionary", 
+			provider: "Alif Innovative Solution",
+            rating: 4.7,
+			price: "free",
+			fromLanguage: "Arabic",
+			toLanguage: "Urdu"
+		}, 
+		{
+			name: "Arbi Seekhen – Arbi Urdu Bol Chal", 
+			provider: "Injeer Apps",
+            rating: 4.4,
+			price: "free", 
+			fromLanguage: "Arabic",
+			toLanguage: "Urdu"
+		}, 
+		{
+			name: "اردو-فارسی دیکشنری",
+			provider: "Glosbe",
+			rating: 4.3, 
+			price: "free", 
+			fromLanguage: "farsi", 
+			toLanguage: "Urdu"
+		},
+		{
+			name: "Al Munjid Complete Arabic-Urdu",
+			provider: "naveedapps",
+			rating: 4.3, 
+			price: "free", 
+			fromLanguage: "arabic", 
+			toLanguage: "Urdu"
+		},
+		{
+			name: "Farsi Urdu Bol Chal",
+			provider: "Salsabeel",
+			rating: 4.4, 
+			price: "free", 
+			fromLanguage: "farsi", 
+			toLanguage: "Urdu"
+		},
+		{
+			name: "Persian (Farsi) Urdu dict",
+			provider: "dict.land",
+			rating: 3.8, 
+			price: "free", 
+			fromLanguage: "farsi", 
+			toLanguage: "Urdu"
+		}	
+	]
+)
