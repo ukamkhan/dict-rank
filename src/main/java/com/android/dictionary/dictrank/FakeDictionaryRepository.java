@@ -58,8 +58,12 @@ public class FakeDictionaryRepository {
     private void initLanguages() {
         languages = new ArrayList<>();
         languages.add(new Language(getNextLanguageId(), "Arabic"));
-        languages.add(new Language(getNextLanguageId(), "Urdu"));
+        languages.add(new Language(getNextLanguageId(), "English"));
+        languages.add(new Language(getNextLanguageId(), "French"));
+        languages.add(new Language(getNextLanguageId(), "Greek"));
         languages.add(new Language(getNextLanguageId(), "Persian"));
+        languages.add(new Language(getNextLanguageId(), "Spanish"));
+        languages.add(new Language(getNextLanguageId(), "Urdu"));
     }
 
     public List<Dictionary> findDictionaryGreaterThanRating(double rating){

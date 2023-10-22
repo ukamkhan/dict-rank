@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class DictionaryController {
 
@@ -29,6 +31,13 @@ public class DictionaryController {
     public ResponseEntity<Language> addLanguage(@RequestParam(value="name") String languageName) {
         Language result = dictionaryService.addLanguage(languageName);
         return (result != null)? new ResponseEntity<>(result, HttpStatus.CREATED): new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value = "/languages", method = RequestMethod.GET)
+    public ResponseEntity<List<Language>> getLanguages() {
+        List<Language> result;
+        result = dictionaryService.getAllLanguages();
+        return (result != null)? new ResponseEntity<>(result, HttpStatus.OK): new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
     }
 
 }
